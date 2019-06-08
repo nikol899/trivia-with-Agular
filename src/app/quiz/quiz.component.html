@@ -1,0 +1,15 @@
+<form #nameForm="ngForm">
+  <label>Enter your name</label>
+  <input type="text">
+  <button>Enter</button>
+</form>
+<section class = "questionForm">
+<form #questionForm="ngForm" (ngSubmit)="onSubmit(questionForm)" *ngFor="let list of questionList;index as i">
+  <p>{{list.question}}</p>
+  <label><input type="radio" name="choice" [value]="list.choice_1" (click)="checkAnswer(i)">{{list.choice_1}}</label>
+  <label><input type="radio" name="choice" [value]="list.choice_2" (click)="checkAnswer(i)">{{list.choice_2}}</label>
+  <label><input type="radio" name="choice" [value]="list.choice_3" (click)="checkAnswer(i)">{{list.choice_3}}</label>
+  <label><input type="radio" name="choice" [value]="list.choice_4" (click)="checkAnswer(i)">{{list.choice_4}}</label>
+  <p>{{list.answer}}</p>
+</form>
+</section>
