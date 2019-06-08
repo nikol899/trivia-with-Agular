@@ -21,9 +21,9 @@ export class QuizComponent implements OnInit {
       console.log(this.questionList);
     })
    }
- checkAnswer(form,index){
-if(form.choice[index].value == form.answer[index].value){
-    console.log(form);
+ checkAnswer(i){
+if(this.questionList.choice[i].value == this.questionList.answer[i].value){
+    console.log("yes");
   }
 
  }

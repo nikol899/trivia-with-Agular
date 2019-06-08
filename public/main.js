@@ -207,7 +207,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form #nameForm=\"ngForm\">\n  <label>Enter your name</label>\n  <input type=\"text\">\n  <button>Enter</button>\n</form>\n<section class = \"questionForm\">\n<form #questionForm=\"ngForm\" (ngSubmit)=\"onSubmit(questionForm)\" *ngFor=\"let list of questionList;index as i\">\n  <p>{{list.question}}</p>\n  <label><input type=\"radio\" name=\"choice\" [value]=\"list.choice_1\" (click)=\"checkAnswer(i)\">{{list.choice_1}}</label>\n  <label><input type=\"radio\" name=\"choice\" [value]=\"list.choice_2\" (click)=\"checkAnswer(i)\">{{list.choice_2}}</label>\n  <label><input type=\"radio\" name=\"choice\" [value]=\"list.choice_3\" (click)=\"checkAnswer(i)\">{{list.choice_3}}</label>\n  <label><input type=\"radio\" name=\"choice\" [value]=\"list.choice_4\" (click)=\"checkAnswer(i)\">{{list.choice_4}}</label>\n\n</form>\n</section>"
+module.exports = "<form #nameForm=\"ngForm\">\n  <label>Enter your name</label>\n  <input type=\"text\">\n  <button>Enter</button>\n</form>\n<section class = \"questionForm\">\n<form #questionForm=\"ngForm\" (ngSubmit)=\"onSubmit(questionForm)\" *ngFor=\"let list of questionList;index as i\">\n  <p>{{list.question}}</p>\n  <label><input type=\"radio\" name=\"choice\" [value]=\"list.choice_1\" (click)=\"checkAnswer(i)\">{{list.choice_1}}</label>\n  <label><input type=\"radio\" name=\"choice\" [value]=\"list.choice_2\" (click)=\"checkAnswer(i)\">{{list.choice_2}}</label>\n  <label><input type=\"radio\" name=\"choice\" [value]=\"list.choice_3\" (click)=\"checkAnswer(i)\">{{list.choice_3}}</label>\n  <label><input type=\"radio\" name=\"choice\" [value]=\"list.choice_4\" (click)=\"checkAnswer(i)\">{{list.choice_4}}</label>\n  <p>{{list.answer}}</p>\n</form>\n</section>\n\n"
 
 /***/ }),
 
@@ -242,18 +242,10 @@ var QuizComponent = /** @class */ (function () {
             console.log(_this.questionList);
         });
     };
-    QuizComponent.prototype.checkAnswer = function () {
-        // if(this.questionList[index].value === form.value[index].answer){
-        //      console.log("yes");
-        //     //  this.choices.push(form);
-        //  console.log(this.choices);}
-        //  if(this.choices[index] === this.questionList.value){
-        //     // this.choices.push(choice);
-        //     console.log(this.choices);
-        //     return true;
-        //    }else{
-        //      return false;
-        //    }
+    QuizComponent.prototype.checkAnswer = function (i) {
+        if (this.questionList.choice[i].value == this.questionList.answer[i].value) {
+            console.log("yes");
+        }
     };
     QuizComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
