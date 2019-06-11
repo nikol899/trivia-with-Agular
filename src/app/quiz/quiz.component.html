@@ -1,15 +1,28 @@
-<form #nameForm="ngForm">
+<form #nameForm="ngForm" (ngSubmit)=addName(nameForm)>
   <label>Enter your name</label>
-  <input type="text">
+  <input type="text" ngModel name="name">
   <button>Enter</button>
 </form>
+
 <section class = "questionForm">
-<form #questionForm="ngForm" (ngSubmit)="onSubmit(questionForm)" *ngFor="let list of questionList;index as i">
+
+<form #questionForm="ngForm" (ngSubmit)="submitResult(questionForm)" >
+  <div *ngFor="let list of questionList;index as i">
   <p>{{list.question}}</p>
-  <label><input type="radio" name="choice" [value]="list.choice_1" (click)="checkAnswer(i)">{{list.choice_1}}</label>
-  <label><input type="radio" name="choice" [value]="list.choice_2" (click)="checkAnswer(i)">{{list.choice_2}}</label>
-  <label><input type="radio" name="choice" [value]="list.choice_3" (click)="checkAnswer(i)">{{list.choice_3}}</label>
-  <label><input type="radio" name="choice" [value]="list.answer" (click)="checkAnswer(i)">{{list.choice_4}}</label>
+  
+  <input type="radio" name="list{{i+1}}"  ngModel (click)="onSelection(list.choice_1, list.answer,i)"  value="{{list.choice_1}}" >
+  <label>{{list.choice_1}}</label>
+
+  <input type="radio" name="list{{i+1}}"   ngModel (click)="onSelection(list.choice_2, list.answer,i)" value="{{list.choice_2}}" >
+  <label> {{list.choice_2}}</label>
+
+  <input type="radio" name="list{{i+1}}"   ngModel (click)="onSelection(list.choice_3, list.answer,i)" value="{{list.choice_3}}" >
+  <label> {{list.choice_3}}</label>
+  
+  <input type="radio" name="list{{i+1}}"   ngModel (click)="onSelection(list.choice_4, list.answer,i)" value="{{list.choice_4}}" >
+  <label>{{list.choice_4}}</label>
+</div>
+<button>Submit</button>
 </form>
 </section>
 
