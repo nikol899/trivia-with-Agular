@@ -22,9 +22,9 @@ export class ResultsComponent implements OnInit {
   ;
   
   ngOnInit() {
-    this.score = this.quizService.getScores();
-    this.questions = this.quizService.getQuestions();
-    this.answers = this.quizService.getAnswers();
+    // this.score = this.quizService.getScores();
+    // this.questions = this.quizService.getQuestions();
+    // this.answers = this.quizService.getAnswers();
     }
 }
   

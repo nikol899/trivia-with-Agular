@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class QuizService {
-  score = 0;
+score = 0;
 answers:any[]=[];
 questions: any;
 
@@ -31,12 +31,12 @@ questions: any;
     return this.answers;
   }
 
-  addingScore(form, questions) {
-    this.answers=form.value;
-    this.questions = questions;
-    // let answers = Object.values(form.value);
+  addingScore(form) {
+    // this.answers=form.value.name;
+    // this.questions = questions;
+    this.answers = Object.values(form.value);
     for (let i = 0; i < this.answers.length; i++) {
-      if (this.answers[i] === questions[i].answer) {
+      if (this.answers[i] === true) {
         this.score++;
       }
     }

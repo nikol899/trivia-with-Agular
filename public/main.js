@@ -186,18 +186,22 @@ var QuizService = /** @class */ (function () {
         return this.score;
     };
     QuizService.prototype.getQuestions = function () {
+        return this.questions;
+    };
+    QuizService.prototype.getAnswers = function () {
         return this.answers;
     };
-    QuizService.prototype.addingScore = function (form, questions) {
-        var answers = form.value;
-        // let answers = Object.values(form.value);
-        for (var i = 0; i < answers.length; i++) {
-            if (answers[i] === questions[i].answer) {
+    QuizService.prototype.addingScore = function (form) {
+        // this.answers=form.value.name;
+        // this.questions = questions;
+        this.answers = Object.values(form.value);
+        for (var i = 0; i < this.answers.length; i++) {
+            if (this.answers[i] === true) {
                 this.score++;
             }
         }
         console.log(this.score);
-        console.log(answers);
+        console.log(this.answers);
         this.router.navigate(["/results"]);
     };
     QuizService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -258,12 +262,13 @@ var QuizComponent = /** @class */ (function () {
     function QuizComponent(quizService, router) {
         this.quizService = quizService;
         this.router = router;
-        this.choices = [false, false, false, false, false, false, false, false, false, false];
+        this.choices = [];
     }
     QuizComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.quizService.getRandQues().subscribe(function (response) {
             _this.questionList = response;
+            console.log("Hi");
             console.log(_this.questionList);
         });
     };
@@ -276,9 +281,10 @@ var QuizComponent = /** @class */ (function () {
         }
         console.log(this.choices);
     };
-    QuizComponent.prototype.submitResult = function (form, questions) {
+    QuizComponent.prototype.submitResult = function (form) {
         //  console.log(form.value);
-        this.quizService.addingScore(form, this.questionList);
+        // this.quizService.addingScore(form,this.questionList);
+        this.quizService.addingScore(form);
     };
     QuizComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -313,7 +319,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<p>{{score}}</p>\r\n\r\n<h1>works</h1>"
+module.exports = "\r\n<p>{{score}}</p>\r\n<p>{{questions}}</p>\r\n<p>{{answers}}</p>\r\n<h1>works</h1>"
 
 /***/ }),
 
@@ -340,9 +346,9 @@ var ResultsComponent = /** @class */ (function () {
     }
     ;
     ResultsComponent.prototype.ngOnInit = function () {
-        this.score = this.quizService.getScores();
-        this.answers = this.quizService.getQuestions();
-        console.log(this.score, this.answers);
+        // this.score = this.quizService.getScores();
+        // this.questions = this.quizService.getQuestions();
+        // this.answers = this.quizService.getAnswers();
     };
     ResultsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

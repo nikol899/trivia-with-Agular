@@ -9,13 +9,13 @@ import { Router } from '@angular/router';
 })
 export class QuizComponent implements OnInit {
   questionList: any;
-  choices: any[] = [false,false,false,false,false,false,false,false,false,false];
-  // choices:any[]=[];
+  choices: boolean[] = [];
 
   constructor(private quizService: QuizService, private router: Router) { }
   ngOnInit() {
     this.quizService.getRandQues().subscribe(response => {
       this.questionList = response;
+      console.log("Hi");
       console.log(this.questionList);
     })
   }
@@ -28,9 +28,10 @@ export class QuizComponent implements OnInit {
     console.log(this.choices);
   }
   
-  submitResult(form, questions){
+  submitResult(form){
 //  console.log(form.value);
-    this.quizService.addingScore(form,this.questionList);
+    // this.quizService.addingScore(form,this.questionList);
+    this.quizService.addingScore(form);
   }
 
 }
